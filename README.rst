@@ -28,6 +28,9 @@ A shell based test library for Ansible that works both locally and over Travis-C
 - `Do you want to contribute?`_
 - `Author`_
 
+.. role:: bash(code)
+   :language: bash
+
 Typical Travis setup vs using RoleSpec
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -60,7 +63,7 @@ The snippets below come from testing a Rails deployment role.
 The old typical Travis way
 ``````````````````````````
 
-::
+.. code:: YAML
 
   ---
 
@@ -138,7 +141,7 @@ The old typical Travis way
 The same test case using RoleSpec
 `````````````````````````````````
 
-::
+.. code:: Bash
 
   #!/bin/bash
 
@@ -170,7 +173,7 @@ If you're using it on Travis then you don't need to download anything.
 
 Use this ``.travis.yml`` as a guide, it would go in each of your role's repositories:
 
-::
+.. code:: YAML
 
   ---
 
@@ -196,10 +199,10 @@ Use this ``.travis.yml`` as a guide, it would go in each of your role's reposito
 
 You can also use RoleSpec locally, perhaps in a container or virtual machine.
 
-::
+.. code:: Bash
 
-  $ git clone https://github.com/nickjj/rolespec
-  $ cd rolespec ; sudo make install
+  git clone https://github.com/nickjj/rolespec
+  cd rolespec ; sudo make install
 
 Getting setup locally
 `````````````````````
@@ -237,7 +240,9 @@ installed RoleSpec.
 First off we'll want to **init a new working directory**. This is where all of
 your roles and tests will be stored. It can be located anywhere you want. Run this:
 
-``rolespec -i ~/foo``
+.. code:: Bash
+
+  rolespec -i ~/foo
 
 From this point on I'm going to assume you're in your working directory. All
 paths will be relative to that.
@@ -256,12 +261,14 @@ just an example.
 Let's create a role locally and make it do the least amount possible just so
 we can test it.
 
-``mkdir -p roles/someperson.foo/tasks && touch roles/someperson.foo/tasks/main.yml``
+.. code:: Bash
+
+  mkdir -p roles/someperson.foo/tasks && touch roles/someperson.foo/tasks/main.yml
 
 Basic test scaffold
 ```````````````````
 
-``rolespec -n tests/ansible-foo`` to create a new test case for this role.
+:bash:`rolespec -n ~~ ~/tests/ansible-foo` to create a new test case for this role.
 
 Investigate the hosts file
 ``````````````````````````

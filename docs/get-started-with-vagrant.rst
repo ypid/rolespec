@@ -21,7 +21,7 @@ Quick start
   cat > Vagrantfile << EOF
   Vagrant.configure(2) do |config|
     config.vm.box = "ubuntu/trusty64"
-  
+
     config.vm.provision "shell",
       :path => "vagrant_specs.sh",
       :upload_path => "/home/vagrant/specs",
@@ -29,7 +29,7 @@ Quick start
       :args => "--install <your_role> <specs_repos>"
   end
   EOF
-  curl https://raw.githubusercontent.com/leucos/rolespec/develop/docs/vagrant_specs.sh > vagrant_specs.sh 2>/dev/null
+  curl https://raw.githubusercontent.com/nickjj/rolespec/master/docs/vagrant_specs.sh > vagrant_specs.sh 2>/dev/null
   vagrant up
   vagrant ssh -c specs
 
@@ -39,17 +39,17 @@ Creating a Vagrant file
 The required Vagrant file is very basic. It must be in the root directory for
 your role. For instance, if you have a ``htop`` role in ``/home/ansible/ansible-htop``,
 the Vagrant file path must be ``/home/ansible/ansible-htop/Vagrantfile``.
-You might want to adapt it to your needs, but it can boil down to this very 
+You might want to adapt it to your needs, but it can boil down to this very
 simple configuration:
 
 ::
 
   # -*- mode: ruby -*-
   # vi: set ft=ruby :
-  
+
   Vagrant.configure(2) do |config|
     config.vm.box = "ubuntu/trusty64"
-  
+
     config.vm.provision "shell",
       :path => "vagrant_specs.sh",
       :upload_path => "/home/vagrant/specs",
@@ -60,13 +60,13 @@ simple configuration:
 
 You have to change the arguments in the args line:
 
-- ``role_name``: set your current role name 
+- ``role_name``: set your current role name
 - ``specs_repos``: your tests repository URL
 
 This file will:
 
 - download and boot a ubuntu/trusty64 vagrant image
-- copy a shell script to ``/home/vagrant/specs`` and execute it with the 
+- copy a shell script to ``/home/vagrant/specs`` and execute it with the
   arguments provided
 
 Adding the provisioning script
@@ -82,12 +82,12 @@ directory.
   # Vagrant provisioning script
   #
   # Usage for provisioning VM & running (in Vagrant file):
-  # 
+  #
   # script.sh --install <role> <URL for test suite>
   #
-  # e.g. : 
+  # e.g. :
   # script.sh --install ansible-nginx https://github.com/erasme/erasme-roles-specs.git
-  # 
+  #
   # Usage for running only (from host):
   #
   # vagrant ssh -c ./specs
@@ -102,7 +102,7 @@ directory.
     su vagrant -c "git clone $3 ~/testdir/tests"
     exit
   fi
-  
+
   cd ~vagrant/testdir && rolespec -r $(ls roles) "$*"
 
 ::
@@ -179,7 +179,7 @@ Automating test runs with Guard
 -------------------------------
 
 If you want to automate tests runs when you change your role locally, you can
-use `Guard <https://github.com/guard/guard/>`_ and 
+use `Guard <https://github.com/guard/guard/>`_ and
 `guard-shell <https://github.com/guard/guard-shell/>`_.
 
 Guard will execute a command of your choice when some specific files changes.
